@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Letter</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 80px 24px;
+      font-family: 'Playfair Display', serif;
+      background: #f6f2ee;
+      color: #2c2c2c;
+      line-height: 1.8;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    p {
+      font-size: 1.15rem;
+      margin-bottom: 1.5em;
+    }
+
+    /* Password screen */
+    #password-screen {
+      text-align: center;
+      margin-top: 120px;
+      opacity: 1;
+      transition: opacity 1.5s ease;
+    }
+
+    #password-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    input[type="password"] {
+      font-family: inherit;
+      padding: 10px;
+      font-size: 1rem;
+      width: 200px;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid #aaa;
+      background: none;
+    }
+
+    .error {
+      color: #a33;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Letter content */
+    #content {
+      opacity: 0;
+      transition: opacity 2s ease;
+      display: none;
+    }
+
+    #content.fade-in {
+      opacity: 1;
+    }
+
+    /* Hide YouTube visually */
+    iframe {
+      width: 0;
+      height: 0;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD SCREEN -->
+  <div id="password-screen">
+    <p>Please enter the password</p>
+    <input type="password" id="password-input" />
+    <br />
+    <button onclick="checkPassword()">Enter</button>
+    <div id="error" class="error"></div>
+  </div>
+
+  <!-- ACTUAL CONTENT -->
+  <div id="content">
+
+    <p>
+      I find browsing cards in the card section at stores to be fun. They’re so varied and creative!
+      I especially like the pop up cards and the ones that play music when you open them up but the
+      songs and sound quality is usually so BAD! So here’s a better version of a musical card
+      (but also one with way more space to write the massive paragraphs I have to say).
+      WANTCHU is the song I was listening to on repeat on the plane as I was writing this letter so
+      having that background song play while you read this letter will give you the full experience haha.
+    </p>
+
+    <p>
+      Happy holidays!! Thanks so much for entering my life!
+    </p>
+
+    <p>
+      ✨ <strong>You’re better than I could have imagined!</strong> ✨
+    </p>
+
+    <p>
+      I thought I had a clear idea of what I wanted in a good S.O. but you exceed my imagination.
+      When I’m with you, I don’t feel like I’m being prioritized — I feel like the priority.
+      Your affectionate gaze, enthusiasm, and genuine curiosity makes me feel like I’ve finally
+      found someone who matches how deeply I care in a relationship. And that’s SO VERY EXCITING!!!
+    </p>
+
+    <p>
+      Thanks for taking up the role of being so invested and vulnerable first. I admire how you were
+      able to do that so quickly despite me being quite confusing and not showing much validation in
+      the beginning. I think a large part of how we were able to become so close so quickly was thanks
+      to you gaining my trust from doing that so early on. It’s so nice being in a relationship where
+      I don’t have to hold back much thanks to all the validation and certainty you give.
+    </p>
+
+    <p>
+      You mentioned that one night that you felt so invested because you feel such high potential in
+      this relationship. I also feel the same way which I find really interesting and surprising;
+      because normally I wait a lot longer of a time to come to a conclusion like that since I’m
+      pretty rational and try to collect a lot of data points before getting emotionally invested
+      to that extent. I think I’m still quite rational in your case too but I’ve just done my logical
+      analysis a lot faster haha.
+    </p>
+
+    <p>
+      Spending time with you talking, cuddling, smelling you, kissing, laughing together (although
+      usually it’s AT me 😒), listening to your spicy commentary on shows/life, waking up next to you,
+      doing kitchen experiments together, badminton, ice skating, eating good food, walks in the rain,
+      car rides with your hand on my leg and fun red light stops, your entertaining long texts, and
+      your creative and funny placements of the plushies in your room are all memories that stand out
+      to me so far.
+    </p>
+
+    <p>
+      Here’s to creating more montage moments for you!
+    </p>
+
+    <p>
+      — Joyce
+    </p>
+
+    <!-- Background music -->
+    <iframe
+      id="music"
+      src="https://www.youtube.com/embed/UfeZJd9ZRCk?autoplay=1&loop=1&playlist=UfeZJd9ZRCk&mute=1"
+      allow="autoplay"
+    ></iframe>
+
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      const error = document.getElementById("error");
+      const passwordScreen = document.getElementById("password-screen");
+      const content = document.getElementById("content");
+      const music = document.getElementById("music");
+
+      if (input === "blueberry") {
+        // Fade out password screen
+        passwordScreen.classList.add("fade-out");
+
+        setTimeout(() => {
+          passwordScreen.style.display = "none";
+          content.style.display = "block";
+
+          // Fade in letter
+          setTimeout(() => {
+            content.classList.add("fade-in");
+          }, 50);
+
+          // Unmute music after interaction
+          music.src = music.src.replace("mute=1", "mute=0");
+
+        }, 1500);
+      } else {
+        error.textContent = "Incorrect password";
+      }
+    }
+  </script>
+
+</body>
+</html>
